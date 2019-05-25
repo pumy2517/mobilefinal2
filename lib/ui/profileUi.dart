@@ -43,7 +43,6 @@ class ProfileScreen extends State<ProfileUi> {
   void initState() {
     super.initState();
     this.userdb.open();
-    print("testfuckyou");
     FileIo filedata = FileIo();
     SharedPreferencesUtil.loadLastId().then((value) async {
       await userdb.open();
