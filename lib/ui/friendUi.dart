@@ -54,9 +54,6 @@ class FriendScreen extends State<FriendUi> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text("Friend"),
-      // ),
       body: Padding(
         padding: const EdgeInsets.only(top: 40),
         child: Column(
@@ -124,7 +121,7 @@ class FriendScreen extends State<FriendUi> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => FriendTodoUi(
-                        id: values[index].id),
+                        id: values[index].id, name: values[index].name),
                   ),
                 );
               },
@@ -134,50 +131,5 @@ class FriendScreen extends State<FriendUi> {
       ),
     );
   }
-  // List<User> values = snapshot.data;
-  //   return new Expanded(
-  //     child: new ListView.builder(
-  //       itemCount: values.length,
-  //       itemBuilder: (BuildContext context, int index) {
-  //         return new Card(
-  //           child: InkWell(
-  //             child: Column(
-  //             crossAxisAlignment: CrossAxisAlignment.start,
-  //             children: <Widget>[
-  //               Text(
-  //                 "${(values[index].id).toString()} : ${values[index].name}",
-  //                 style: TextStyle(
-  //                   fontWeight: FontWeight.bold,
-  //                   fontSize: 24
-  //                 ),
-  //               ),
-  //               Padding(padding: EdgeInsets.fromLTRB(0, 15, 0, 10)),
-  //               Text(
-  //                 values[index].email,
-  //                 style: TextStyle(fontSize: 16),
-  //               ),
-  //               Text(
-  //                 values[index].phone,
-  //                 style: TextStyle(fontSize: 16),
-  //               ),
-  //               Text(
-  //                 values[index].website,
-  //                 style: TextStyle(fontSize: 16),
-  //               ),
-  //             ],
-  //           ),
-  //           onTap: (){
-  //             // Navigator.push(
-  //             //   context,
-  //             //   MaterialPageRoute(
-  //             //     builder: (context) => MyfriendPage(id: values[index].id, name: values[index].name),
-  //             //   ),
-  //             // );
-  //           },
-  //           ),
-  //         );
-  //       },
-  //     ),
-  //   );
-  // }
+
 }
