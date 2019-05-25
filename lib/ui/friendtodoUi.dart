@@ -51,47 +51,47 @@ Future<List<Todo>> getTodo(int userid) async {
 }
 
 Widget TodoList(BuildContext context, AsyncSnapshot snapshot) {
-    List<Todo> listtodos = snapshot.data;
-    return new Expanded(
-      child: new ListView.builder(
-        itemCount: listtodos.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Card(
-            child: new InkWell(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Text(
-                      "${(listtodos[index].id).toString()}",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-                    ),
+  List<Todo> listtodos = snapshot.data;
+  return new Expanded(
+    child: new ListView.builder(
+      itemCount: listtodos.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Card(
+          child: new InkWell(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: Text(
+                    "${(listtodos[index].id).toString()}",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 5),
-                    child: Text(
-                      listtodos[index].title,
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-                  listtodos[index].completed == true ?
-                  Text(
-                    "Completed",
-                    style: TextStyle(fontSize: 16),
-                  ):
-                  Text(
-                    "",
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 5),
+                  child: Text(
+                    listtodos[index].title,
                     style: TextStyle(fontSize: 16),
                   ),
-                ],
-              ),
+                ),
+                listtodos[index].completed == true
+                    ? Text(
+                        "Completed",
+                        style: TextStyle(fontSize: 16),
+                      )
+                    : Text(
+                        "",
+                        style: TextStyle(fontSize: 16),
+                      ),
+              ],
             ),
-          );
-        },
-      ),
-    );
-  }
+          ),
+        );
+      },
+    ),
+  );
+}
 
 class FriendTodoScreen extends State<FriendTodoUi> {
   @override
@@ -102,11 +102,18 @@ class FriendTodoScreen extends State<FriendTodoUi> {
         padding: const EdgeInsets.only(top: 40),
         child: Column(
           children: <Widget>[
-            RaisedButton(
-              child: Text("Back"),
-              onPressed: () {
-                Navigator.pop(context);
-              },
+            Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: RaisedButton(
+                    child: Text("Back"),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+              ],
             ),
             FutureBuilder(
               future: getTodo(widget.id),

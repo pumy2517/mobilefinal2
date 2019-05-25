@@ -58,11 +58,18 @@ class FriendScreen extends State<FriendUi> {
         padding: const EdgeInsets.only(top: 40),
         child: Column(
           children: <Widget>[
-            RaisedButton(
-              child: Text("BACK"),
-              onPressed: () {
-                Navigator.pop(context);
-              },
+            Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: RaisedButton(
+                    child: Text("Back"),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+              ],
             ),
             FutureBuilder(
               future: fetchUsers(),
@@ -131,5 +138,4 @@ class FriendScreen extends State<FriendUi> {
       ),
     );
   }
-
 }
