@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../model/share.dart';
 import '../model/userDB.dart';
 import './homeUi.dart';
+import '../model/fileio.dart';
 
 class ProfileUi extends StatefulWidget {
   @override
@@ -43,9 +44,10 @@ class ProfileScreen extends State<ProfileUi> {
     super.initState();
     this.userdb.open();
     print("testfuckyou");
-    SharedPreferencesUtil.loadLastLogin().then((value) async {
+    FileIo filedata = FileIo();
+    SharedPreferencesUtil.loadLastId().then((value) async {
       await userdb.open();
-      await userdb.getAccountByUserId(value).then((values) {
+      await userdb.getAccount(int.parse(value)).then((values) {
         setState(() {
           _account = values;
           username.text = _account.userid;
@@ -55,7 +57,7 @@ class ProfileScreen extends State<ProfileUi> {
         });
       });
     });
-    SharedPreferencesUtil.loadQuote().then((value) {
+    filedata.readCounter().then((value){
       setState(() {
         ProfileScreen.quote = value;
         quotefield.text = quote;
@@ -67,9 +69,6 @@ class ProfileScreen extends State<ProfileUi> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-        appBar: AppBar(
-          title: Text("PROFILE"),
-        ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Form(
@@ -132,6 +131,7 @@ class ProfileScreen extends State<ProfileUi> {
                 ),
                 TextFormField(
                     controller: password,
+                    obscureText: true,
                     decoration: InputDecoration(
                       border: new OutlineInputBorder(
                           borderSide: new BorderSide(color: Colors.black)),
@@ -176,9 +176,9 @@ class ProfileScreen extends State<ProfileUi> {
                             _account.name = name.text;
                             _account.age = int.parse(age.text);
                             _account.password = password.text;
-
-                            await SharedPreferencesUtil.saveQuote(
-                                quotefield.text);
+                            SharedPreferencesUtil.saveName(name.text);
+                            FileIo filedata = FileIo();
+                            await filedata.writeCounter(quotefield.text);
                             Navigator.pushReplacement(
                               context,
                               new MaterialPageRoute(
@@ -188,19 +188,6 @@ class ProfileScreen extends State<ProfileUi> {
                         },
                       ),
                     ),
-                    // Expanded(
-                    //   flex: 1,
-                    //   child: RaisedButton(
-                    //     child: Text("BACK"),
-                    //     onPressed: () {
-                    //       Navigator.pushReplacement(
-                    //         context,
-                    //         new MaterialPageRoute(
-                    //             builder: (context) => HomeUi(_account)),
-                    //       );
-                    //     },
-                    //   ),
-                    // )
                   ],
                 ),
               ],

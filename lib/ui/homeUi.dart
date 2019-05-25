@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../model/userDB.dart';
 import '../model/share.dart';
 import './profileUi.dart';
-
+import '../model/fileio.dart';
 
 
 class HomeUi extends StatefulWidget {
@@ -17,12 +17,19 @@ class HomeUi extends StatefulWidget {
 
 class HomeScreen extends State<HomeUi> {
   String quote;
+  String name;
 
   void initState() {
     super.initState();
-    SharedPreferencesUtil.loadQuote().then((value) {
+    FileIo filedata = FileIo();
+    filedata.readCounter().then((value){
       setState(() {
-        this.quote = value;
+        quote = value;
+      });
+    });
+    SharedPreferencesUtil.loadName().then((value){
+      setState(() {
+        name = value; 
       });
     });
     print("test");
@@ -38,8 +45,8 @@ class HomeScreen extends State<HomeUi> {
         padding: EdgeInsets.fromLTRB(20, 40, 20, 0),
         children: <Widget>[
           ListTile(
-            title: Text("Hello ${widget._account.name}"),
-            subtitle: Text("This is my quote ${this.quote} "),
+            title: Text("Hello ${this.name}"),
+            subtitle: Text('This is my quote "${this.quote}" '),
           ),
           RaisedButton(
             child: Text("PROFILE SETUP"),
@@ -51,16 +58,17 @@ class HomeScreen extends State<HomeUi> {
             },
           ),
           RaisedButton(
-            child: Text("FRIEND"),
+            child: Text("MY FRIEND"),
             onPressed: () {
               Navigator.pushNamed(context, "/friend");
             },
           ),
           RaisedButton(
-            child: Text("LOGOUT"),
+            child: Text("SIGN OUT"),
             onPressed: () {
               SharedPreferencesUtil.saveLastLogin(null);
-              SharedPreferencesUtil.saveQuote(null);
+              SharedPreferencesUtil.saveID(null);
+              SharedPreferencesUtil.saveName(null);
               Navigator.pushReplacementNamed(context, "/");
             },
           ),

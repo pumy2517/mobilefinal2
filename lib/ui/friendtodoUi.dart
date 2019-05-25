@@ -5,8 +5,9 @@ import 'dart:async';
 
 class FriendTodoUi extends StatefulWidget {
   final int id;
+  final String name;
 
-  FriendTodoUi({@required this.id});
+  FriendTodoUi({@required this.id, @required this.name});
 
   @override
   State<StatefulWidget> createState() {
@@ -60,14 +61,19 @@ Widget TodoList(BuildContext context, AsyncSnapshot snapshot) {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
-                    "${(listtodos[index].id).toString()}",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Text(
+                      "${(listtodos[index].id).toString()}",
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                    ),
                   ),
-                  Padding(padding: EdgeInsets.only(top: 10)),
-                  Text(
-                    listtodos[index].title,
-                    style: TextStyle(fontSize: 16),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 5),
+                    child: Text(
+                      listtodos[index].title,
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ),
                   listtodos[index].completed == true ?
                   Text(

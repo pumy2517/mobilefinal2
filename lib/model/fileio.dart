@@ -13,24 +13,19 @@ Future<File> get _localFile async {
   return File('$path/counter.txt');
 }
 
-Future<File> writeCounter(int counter) async {
+Future<File> writeCounter(String counter) async {
   final file = await _localFile;
-
-  // Write the file
   return file.writeAsString('$counter');
 }
 
-Future<int> readCounter() async {
+Future<String> readCounter() async {
   try {
     final file = await _localFile;
-
-    // Read the file
     String contents = await file.readAsString();
 
-    return int.parse(contents);
+    return contents;
   } catch (e) {
-    // If encountering an error, return 0
-    return 0;
+    return "";
   }
 }
 }

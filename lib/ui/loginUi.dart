@@ -86,6 +86,8 @@ class LoginScreen extends State<LoginUi> {
                         } else {
                           print("LOFIN PASS");
                           SharedPreferencesUtil.saveLastLogin(userid.text);
+                          SharedPreferencesUtil.saveID(account.id.toString());
+                          SharedPreferencesUtil.saveName(account.name);
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(

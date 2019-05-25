@@ -19,7 +19,6 @@ class RegisterScreen extends State<RegisterPage> {
   final password = TextEditingController();
   final repassword = TextEditingController();
 
-  bool isUserIn = false;
 
   bool isNumeric(String s) {
     if(s == null) {
@@ -59,7 +58,7 @@ class RegisterScreen extends State<RegisterPage> {
               decoration: InputDecoration(
                 labelText: "User Id",
                 hintText: "User Id length must between 6 - 12",
-                icon: Icon(Icons.account_box, size: 40, color: Colors.grey),
+                prefixIcon: Icon(Icons.account_box, size: 40, color: Colors.grey),
               ),
               controller: userid,
               keyboardType: TextInputType.text,
@@ -70,16 +69,13 @@ class RegisterScreen extends State<RegisterPage> {
                 else if (value.length < 6 || value.length > 12){
                   return "User Id length must between 6 - 12";
                 }
-                else if (this.isUserIn){
-                  return "This Username is taken";
-                }
               }
             ),
             TextFormField(
               decoration: InputDecoration(
                 labelText: "Name",
                 hintText: "ex. 'Firstname Lastname'",
-                icon: Icon(Icons.account_circle, size: 40, color: Colors.grey),
+                prefixIcon: Icon(Icons.account_circle, size: 40, color: Colors.grey),
               ),
               controller: name,
               keyboardType: TextInputType.text,
@@ -96,7 +92,7 @@ class RegisterScreen extends State<RegisterPage> {
               decoration: InputDecoration(
                 labelText: "Age",
                 hintText: "Age must Between 10 to 80",
-                icon: Icon(Icons.event_note, size: 40, color: Colors.grey),
+                prefixIcon: Icon(Icons.event_note, size: 40, color: Colors.grey),
               ),
               controller: age,
               keyboardType: TextInputType.number,
@@ -113,7 +109,7 @@ class RegisterScreen extends State<RegisterPage> {
               decoration: InputDecoration(
                 labelText: "Password",
                 hintText: "Password must longer than 6",
-                icon: Icon(Icons.lock, size: 40, color: Colors.grey),
+                prefixIcon: Icon(Icons.lock, size: 40, color: Colors.grey),
               ),
               controller: password,
               obscureText: true,
