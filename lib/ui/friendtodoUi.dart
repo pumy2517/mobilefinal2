@@ -121,7 +121,7 @@ class FriendTodoScreen extends State<FriendTodoUi> {
                 switch (snapshot.connectionState) {
                   case ConnectionState.none:
                   case ConnectionState.waiting:
-                    return new Text('loading...');
+                    return new Text('Please wait data is loading');
                   default:
                     if (snapshot.hasError) {
                       return new Text('Error: ${snapshot.error}');

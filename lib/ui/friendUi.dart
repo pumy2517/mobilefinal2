@@ -77,7 +77,7 @@ class FriendScreen extends State<FriendUi> {
                 switch (snapshot.connectionState) {
                   case ConnectionState.none:
                   case ConnectionState.waiting:
-                    return new Text('loading...');
+                    return new Text('Please wait data is loading');
                   default:
                     if (snapshot.hasError) {
                       return new Text('Error: ${snapshot.error}');
@@ -108,10 +108,12 @@ class FriendScreen extends State<FriendUi> {
                     "${(values[index].id).toString()} : ${values[index].name}",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                   ),
-                  Padding(padding: EdgeInsets.fromLTRB(0, 15, 0, 10)),
-                  Text(
-                    values[index].email,
-                    style: TextStyle(fontSize: 16),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Text(
+                      values[index].email,
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ),
                   Text(
                     values[index].phone,

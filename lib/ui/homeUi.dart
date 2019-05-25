@@ -38,9 +38,6 @@ class HomeScreen extends State<HomeUi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('HomePAGE'),
-      // ),
       body: ListView(
         padding: EdgeInsets.fromLTRB(20, 40, 20, 0),
         children: <Widget>[
